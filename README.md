@@ -5,12 +5,17 @@
 
 ## Usage
 
-To solve all the puzzles, first download your puzzle inputs into a new `data` subdirectory in this repository. The puzzle input for day `[DAY_NUM]` should be in `data/[DAY_NUM].txt`. You can then run
+To solve all the puzzles, first clone this repository:
 
 ```
-cd ~
 git clone https://github.com/michael-s-yao/AdventOfCode2025
 cd AdventOfCode2025
+mkdir data
+```
+
+Next, download your puzzle inputs into the new `data` subdirectory in this repository. The puzzle input for day `[DAY_NUM]` should be in `data/[DAY_NUM].txt`. You can then run
+
+```
 docker build -t cpp:latest . && docker run -it cpp:latest bash
 ```
 
