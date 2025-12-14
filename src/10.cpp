@@ -6,6 +6,7 @@
 #include<limits>
 #include<sstream>
 #include<string>
+#include<unordered_set>
 #include<utility>
 #include<vector>
 
@@ -119,7 +120,11 @@ int part_a(
   const std::vector<std::vector<size_t>>& buttons
 ) {
   std::deque<std::pair<std::vector<bool>, int>> queue;
-  queue.push_back({std::vector<bool>(target.size(), false), 0});
+  std::unordered_set<std::vector<bool>> visited;
+
+  std::vector<bool> start(target.size(), false);
+  queue.push_back({start, 0});
+  visited.insert(start);
   std::pair<std::vector<bool>, int> curr;
   while (!queue.empty()) {
     curr = queue.front();
@@ -129,6 +134,9 @@ int part_a(
       std::vector<bool> next = curr.first;
       for (const size_t& loc : button)
         next[loc] = !next[loc];
+      if (visited.find(next) != visited.end())
+        continue;
+      visited.insert(next);
       queue.push_back({next, curr.second + 1});
     }
     queue.pop_front();
